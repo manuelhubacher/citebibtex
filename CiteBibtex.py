@@ -83,12 +83,15 @@ class CiteBibtex(object):
     def get_item(self, i):
         # Year
         try:
-            year = i['year']
+            year = i['date']
         except KeyError:
             try:
-                year = i['issued']
+                year = i['year']
             except KeyError:
-                year = '<no date>'
+                try:
+                    year = i['issued']
+                except KeyError:
+                    year = '<no date>'
 
         # Authors
         try:

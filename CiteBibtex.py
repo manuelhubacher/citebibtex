@@ -105,6 +105,9 @@ class CiteBibtex(object):
         # Title
         try:
             title = i['title']
+            # Don't show Better Bib(La)TeX's extra '{' and '}'
+            title = title.replace('{', '')
+            title = title.replace('}', '')
         except KeyError:
             title = ''
 
@@ -124,6 +127,9 @@ class CiteBibtex(object):
             except KeyError:
                 try:
                     publication = i['booktitle']
+                    # Don't show Better Bib(La)TeX's extra '{' and '}'
+                    publication = publication.replace('{', '')
+                    publication = publication.replace('}', '')
                 except KeyError:
                     # Final fallback if cannot determine publication
                     publication = i['ENTRYTYPE'].capitalize()

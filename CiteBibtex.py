@@ -100,7 +100,10 @@ class CiteBibtex(object):
             # the last names here
             authors = ', '.join([a.split(',',)[0] for a in authors])
         except KeyError:
-            authors = '<no authors>'
+            try:
+                authors = i['editor']
+            except KeyError:
+                authors = '<no authors>'
 
         # Title
         try:
